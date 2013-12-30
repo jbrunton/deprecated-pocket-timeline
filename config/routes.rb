@@ -1,4 +1,6 @@
 PocketTimeline::Application.routes.draw do
+  resources :timelines
+
   resources :events
 
   root 'home#index'
