@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230225032) do
+ActiveRecord::Schema.define(version: 20140101103451) do
 
   create_table "events", force: true do |t|
     t.datetime "date"
@@ -20,6 +20,14 @@ ActiveRecord::Schema.define(version: 20131230225032) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "timeline_events", id: false, force: true do |t|
+    t.integer "event_id",    null: false
+    t.integer "timeline_id", null: false
+  end
+
+  add_index "timeline_events", ["event_id", "timeline_id"], name: "index_timeline_events_on_event_id_and_timeline_id"
+  add_index "timeline_events", ["timeline_id", "event_id"], name: "index_timeline_events_on_timeline_id_and_event_id", unique: true
 
   create_table "timelines", force: true do |t|
     t.string   "title"
