@@ -41,6 +41,8 @@ end
 
 group :development, :test do
   gem 'rspec-rails',  '~> 3.0.0.beta'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
 end
 
 # Use ActiveModel has_secure_password
