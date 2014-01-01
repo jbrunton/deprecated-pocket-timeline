@@ -9,5 +9,5 @@ When(/^I navigate to the timeline '(.*)'$/) do |title|
 end
 
 Then(/^there should be (\d+) events visible$/) do |events_count|
-  page.all(".event").count.should eq(events_count)
+  expect(page.all(".event").count).to eq(events_count)
 end
