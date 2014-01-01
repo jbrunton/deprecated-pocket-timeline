@@ -1,4 +1,8 @@
 PocketTimeline::Application.routes.draw do
+  resources :timelines
+
+  resources :events
+
   root 'home#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

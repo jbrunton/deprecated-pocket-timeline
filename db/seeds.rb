@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+iranian_revolution = Event.create(title: 'Islamic Revolution of Iran', description: 'Overthrow of the Shah')
+iranian_revolution_timeline = Timeline.create(title: 'Islamic Revolution of Iran', description: 'Overthrow of the Shah')
+iranian_revolution_timeline.events.push iranian_revolution
