@@ -10,5 +10,13 @@
   <%= @timeline.description %>
 </p>
 
+<p>
+  <strong>Events:</strong>
+</p>
+
+<% @timeline.events.each do |event| %>
+  <%= render 'events/event', event: event %> 
+<% end %>
+
 <%= link_to 'Edit', edit_timeline_path(@timeline) %> |
 <%= link_to 'Back', timelines_path %>
