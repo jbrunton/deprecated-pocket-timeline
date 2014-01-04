@@ -15,7 +15,7 @@
 </p>
 
 <% @timeline.events.each do |event| %>
-  <%= render 'events/event', event: event %> 
+  <%= render 'events/event', event: event, enable_add_event: false %> 
 <% end %>
 
 <%= link_to 'Edit', edit_timeline_path(@timeline) %> |
@@ -23,4 +23,6 @@
 
 <br />
 
-<span>Add Event:</span> <%= link_to 'Create New', new_timeline_event_path(@timeline) %>
+<span>Add Event:</span>
+<%= link_to 'Create New', new_timeline_event_path(@timeline) %> |
+<%= link_to 'Add Existing', search_timeline_events_path(@timeline) %>

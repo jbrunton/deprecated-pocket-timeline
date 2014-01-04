@@ -46,6 +46,33 @@ describe EventsController do
       expect(assigns(:event)).to eq(event)
     end
   end
+  
+  describe "GET search" do
+    let(:timeline) { create(:timeline) }
+    let(:some_event) { create(:event, title: 'Some Event') }
+    let(:some_other_event) { create(:event, title: 'Some Other Event') }
+    let(:yet_another_event) { create(:event, title: 'Yet Another Event') }
+    
+    it "searches for all events matching the query" do
+      get :search, {:timeline_id => timeline.id, :query => 'other event'}, valid_session
+      expect(assigns(:events)).to eq([some_other_event, yet_another_event])
+    end
+  end
+  
+  describe "POST add" do
+    let (:timeline) { create(:timeline) }
+    let (:event) { create(:event) }
+    
+    it "adds the event to the timeline" do
+      post :add, {:timeline_id => timeline.id, :id => event.to_param}, valid_session  
+      expect(timeline.events).to eq([event])
+    end
+    
+    it "redirects to the timeline" do
+      post :add, {:timeline_id => timeline.id, :id => event.to_param}, valid_session  
+      expect(response).to redirect_to(timeline)
+    end
+  end
 
   describe "GET new" do
     it "assigns a new event as @event" do

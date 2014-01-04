@@ -1,6 +1,13 @@
 PocketTimeline::Application.routes.draw do
   resources :timelines do
-    resources :events
+    resources :events do
+      member do
+        post 'add'
+      end
+      collection do
+        get 'search'
+      end
+    end
   end
 
   resources :events

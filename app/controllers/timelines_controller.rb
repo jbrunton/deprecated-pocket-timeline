@@ -20,7 +20,7 @@ class TimelinesController < ApplicationController
   # GET /timelines/1/edit
   def edit
   end
-
+  
   # POST /timelines
   # POST /timelines.json
   def create

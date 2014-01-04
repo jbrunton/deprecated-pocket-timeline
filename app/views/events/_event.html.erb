@@ -13,4 +13,10 @@
     <strong>Description:</strong>
     <%= event.description %>
   </p>
+  
+  <% if enable_add_event then %>
+    <%= form_tag(add_timeline_event_url(@timeline, event), method: 'post') do -%>
+      <div><%= submit_tag 'Add Event' %></div>
+    <% end -%>
+  <% end %>
 </div>
