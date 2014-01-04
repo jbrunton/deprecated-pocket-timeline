@@ -1,6 +1,6 @@
 PocketTimeline::Application.routes.draw do
   resources :timelines do
-    resources :events, shallow: true
+    resources :events
   end
 
   resources :events

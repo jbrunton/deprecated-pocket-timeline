@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_timeline, only: [:new, :create]
 
   # GET /events
   # GET /events.json
@@ -24,15 +25,14 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = Event.new(event_params)
-
     respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+      record = build_resource
+      if record.save
+        format.html { redirect_to record, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.json { render json: record.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -66,9 +66,23 @@ class EventsController < ApplicationController
     def set_event
       @event = Event.find(params[:id])
     end
+    
+    def set_timeline
+      @timeline = Timeline.find(params[:timeline_id]) unless params[:timeline_id].nil?
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
       params.require(:event).permit(:date, :title, :description)
+    end
+    
+    def build_resource
+      if @timeline
+        @event = @timeline.events.build(event_params)
+        record = @timeline
+      else
+        record = @event = Event.new(event_params)
+      end
+      record
     end
 end
