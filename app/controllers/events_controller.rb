@@ -32,7 +32,7 @@ class EventsController < ApplicationController
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
-        format.json { render json: record.errors, status: :unprocessable_entity }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
