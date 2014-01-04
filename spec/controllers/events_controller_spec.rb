@@ -23,7 +23,8 @@ describe EventsController do
   # This should return the minimal set of attributes required to create a valid
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { "date" => "2013-12-30 22:45:43" } }
+  let(:valid_attributes) { { title: 'Some Event' } }
+  let(:invalid_attributes) { { title: '' } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -84,7 +85,6 @@ describe EventsController do
       
       context "when there is a timeline_id" do
         let (:timeline) { create(:timeline) }
-        let (:test_event) { create(:event) }
         
         it "creates a new Event" do
           expect {
@@ -115,16 +115,26 @@ describe EventsController do
     describe "with invalid params" do
       context "when there is no timeline_id" do
         it "assigns a newly created but unsaved event as @event" do
-          # Trigger the behavior that occurs when invalid params are submitted
-          Event.any_instance.stub(:save).and_return(false)
-          post :create, {:event => { "date" => "invalid value" }}, valid_session
+          post :create, {:event => invalid_attributes}, valid_session
           expect(assigns(:event)).to be_a_new(Event)
         end
 
         it "re-renders the 'new' template" do
-          # Trigger the behavior that occurs when invalid params are submitted
-          Event.any_instance.stub(:save).and_return(false)
-          post :create, {:event => { "date" => "invalid value" }}, valid_session
+          post :create, {:event => invalid_attributes}, valid_session
+          expect(response).to render_template("new")
+        end
+      end
+      
+      context "when there is a timeline_id" do
+        let (:timeline) { create(:timeline) }
+        
+        it "assigns a newly created but unsaved event as @event" do
+          post :create, {:timeline_id => timeline.id, :event => invalid_attributes}, valid_session
+          expect(assigns(:event)).to be_a_new(Event)
+        end
+
+        it "re-renders the 'new' template" do
+          post :create, {:timeline_id => timeline.id, :event => invalid_attributes}, valid_session
           expect(response).to render_template("new")
         end
       end

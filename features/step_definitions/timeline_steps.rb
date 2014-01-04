@@ -43,3 +43,7 @@ end
 Then(/^there should be an event entitled '(.*)' visible$/) do |title|
   expect(page.all('.event_title', text: title).count).to eq(1)
 end
+
+Then(/^there should be an error "(.*?)"$/) do |error|
+  expect(page.all('#error_explanation ul li', text: error).count).to eq(1)
+end

@@ -26,9 +26,9 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     respond_to do |format|
-      record = build_resource
-      if record.save
-        format.html { redirect_to record, notice: 'Event was successfully created.' }
+      build_event
+      if save_event_and_timeline
+        format.html { redirect_to_event_or_timeline }
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -76,13 +76,20 @@ class EventsController < ApplicationController
       params.require(:event).permit(:date, :title, :description)
     end
     
-    def build_resource
+    def build_event
       if @timeline
         @event = @timeline.events.build(event_params)
-        record = @timeline
       else
-        record = @event = Event.new(event_params)
+        @event = Event.new(event_params)
       end
-      record
+    end
+    
+    def save_event_and_timeline
+      (@timeline ? @timeline.save : true) && @event.save
+    end
+    
+    def redirect_to_event_or_timeline
+      resource = @timeline ? @timeline : @event
+      redirect_to resource, notice: 'Event was successfully created.'
     end
 end
