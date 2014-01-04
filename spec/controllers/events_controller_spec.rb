@@ -58,6 +58,21 @@ describe EventsController do
       expect(assigns(:events)).to eq([some_other_event, yet_another_event])
     end
   end
+  
+  describe "POST add" do
+    let (:timeline) { create(:timeline) }
+    let (:event) { create(:event) }
+    
+    it "adds the event to the timeline" do
+      post :add, {:timeline_id => timeline.id, :id => event.to_param}, valid_session  
+      expect(timeline.events).to eq([event])
+    end
+    
+    it "redirects to the timeline" do
+      post :add, {:timeline_id => timeline.id, :id => event.to_param}, valid_session  
+      expect(response).to redirect_to(timeline)
+    end
+  end
 
   describe "GET new" do
     it "assigns a new event as @event" do

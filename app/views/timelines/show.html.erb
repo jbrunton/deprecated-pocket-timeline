@@ -15,7 +15,7 @@
 </p>
 
 <% @timeline.events.each do |event| %>
-  <%= render 'events/event', event: event %> 
+  <%= render 'events/event', event: event, enable_add_event: false %> 
 <% end %>
 
 <%= link_to 'Edit', edit_timeline_path(@timeline) %> |

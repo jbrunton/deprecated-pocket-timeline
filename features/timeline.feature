@@ -43,3 +43,13 @@ Feature: Timeline
     And I click on "Search"
     Then there should be an event entitled "Some Event" visible
     
+  Scenario: Add existing event to timeline
+    Given an event "Some Event"
+    And a timeline "Some Timeline"
+    And I navigate to the search page for the timeline
+    When I input "Event" for "query"
+    And I click on "Search"
+    And I click on "Add Event"
+    Then I should be on the page for timeline "Some Timeline"
+    And there should be an event entitled "Some Event" visible
+    
