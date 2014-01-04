@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :set_timeline, only: [:new, :create]
+  before_action :set_timeline, only: [:search, :new, :create]
 
   # GET /events
   # GET /events.json
@@ -11,6 +11,14 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
+  end
+  
+  # GET /events/search
+  def search
+    if params[:query]
+      query = "%#{params[:query].downcase}%"
+      @events = Event.where("lower(title) LIKE :query or lower(description) LIKE :query", :query => query)
+    end
   end
 
   # GET /events/new

@@ -1,0 +1,12 @@
+<p>Search</p>
+
+<%= form_tag(search_timeline_events_path(@timeline), method: 'get') do -%>
+  <input type="text" name="query" value="<%= params[:query] %>" />
+  <div><%= submit_tag 'Search' %></div>
+<% end -%>
+
+<% if @events then %>
+  <% @events.each do |event| %>
+    <%= render 'events/event', event: event %> 
+  <% end %>
+<% end %>

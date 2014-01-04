@@ -23,4 +23,6 @@
 
 <br />
 
-<span>Add Event:</span> <%= link_to 'Create New', new_timeline_event_path(@timeline) %>
+<span>Add Event:</span>
+<%= link_to 'Create New', new_timeline_event_path(@timeline) %> |
+<%= link_to 'Add Existing', search_timeline_events_path(@timeline) %>
