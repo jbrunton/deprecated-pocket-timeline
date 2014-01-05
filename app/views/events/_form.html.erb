@@ -11,19 +11,14 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <%= render 'shared/date_input_row', prefix: f.object_name %>
+  <%= render 'shared/title_input_row', prefix: f.object_name %>
+  <%= render 'shared/description_input_row', prefix: f.object_name %>
+
+  <div class="row">
+    <div class="large-12 columns">
+      <%= f.submit :class => "small button action" %>
+      <%= link_to 'Cancel', @event, :class => "small button cancel" %>
+    </div>
   </div>
 <% end %>

@@ -1,6 +1,24 @@
-<p id="notice"><%= notice %></p>
-
-<%= render 'event', event: @event, enable_add_event: false %>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="content-full event">
+  <% unless notice.nil? %>
+    <div class="large-12 columns">
+      <div data-alert class="alert-box info">
+        <p id="notice"><%= notice %></p>
+        <a href="#" class="close">&times;</a>
+      </div>
+    </div>
+  <% end %>
+  
+  <h3 class="subheader clearfix">
+    <div class="actions">
+      <%= link_to 'Edit', edit_event_path(@event) %>
+    </div>
+    <%= @event.date.to_formatted_s(:long) %>      
+  </h3>
+  <h1>
+    <%= @event.title %>
+  </h1>
+  
+  <p>
+    <%= @event.description %>
+  </p>
+</div>
