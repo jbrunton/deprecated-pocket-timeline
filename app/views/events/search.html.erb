@@ -1,14 +1,10 @@
 <div class="content-full">
-  <% if @events then %>
-    <h1>Search Results</h1>
-  <% else %>
-    <h1>Search</h1>
-  <% end %>
+  <h1>Search</h1>
 
   <%= form_tag(search_timeline_events_path(@timeline), method: 'get') do -%>
     <div class="row collapse">
       <div class="large-11 small-10 columns">
-        <input type="text" name="query" value="<%= params[:query] %>" />
+        <input type="text" name="query" value="<%= params[:query] %>" autofocus />
       </div>
       <div class="large-1 small-2 columns">
         <%= submit_tag 'Search', :class => 'tiny postfix button' %>
@@ -17,8 +13,12 @@
   <% end -%>
 
   <% if @events then %>
-    <% @events.each do |event| %>
-      <%= render 'events/event', event: event, enable_add_event: true %> 
+    <% if @events.any? %>
+      <% @events.each do |event| %>
+        <%= render 'events/event', event: event, enable_add_event: true %> 
+      <% end %>
+    <% else %>
+      <p>No results found.</p>
     <% end %>
   <% end %>
 </div>
