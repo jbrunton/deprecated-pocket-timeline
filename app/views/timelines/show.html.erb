@@ -1,28 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class="content-full">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @timeline.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @timeline.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @timeline.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @timeline.description %>
+  </p>
 
-<p>
-  <strong>Events:</strong>
-</p>
+  <p>
+    <strong>Events:</strong>
+  </p>
 
-<% @timeline.events.each do |event| %>
-  <%= render 'events/event', event: event, enable_add_event: false %> 
-<% end %>
+  <% @timeline.events.each do |event| %>
+    <%= render 'events/event', event: event, enable_add_event: false %> 
+  <% end %>
 
-<%= link_to 'Edit', edit_timeline_path(@timeline) %> |
-<%= link_to 'Back', timelines_path %>
+  <%= link_to 'Edit', edit_timeline_path(@timeline) %> |
+  <%= link_to 'Back', timelines_path %>
 
-<br />
+  <br />
 
-<span>Add Event:</span>
-<%= link_to 'Create New', new_timeline_event_path(@timeline) %> |
-<%= link_to 'Add Existing', search_timeline_events_path(@timeline) %>
+  <span>Add Event:</span>
+  <%= link_to 'Create New', new_timeline_event_path(@timeline) %> |
+  <%= link_to 'Add Existing', search_timeline_events_path(@timeline) %>
+</div>

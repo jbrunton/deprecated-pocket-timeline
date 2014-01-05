@@ -1,6 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div class="content-full">
+  <p id="notice"><%= notice %></p>
 
-<%= render 'event', event: @event, enable_add_event: false %>
+  <%= render 'event', event: @event, enable_add_event: false %>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+  <%= link_to 'Edit', edit_event_path(@event) %> |
+  <%= link_to 'Back', events_path %>
+</div>

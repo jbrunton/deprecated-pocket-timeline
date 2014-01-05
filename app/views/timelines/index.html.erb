@@ -1,29 +1,33 @@
-<h1>Listing timelines</h1>
+<div class="content-full">
+  
+  <h1>Listing timelines</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @timelines.each do |timeline| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= timeline.title %></td>
-        <td><%= timeline.description %></td>
-        <td><%= link_to 'Show', timeline %></td>
-        <td><%= link_to 'Edit', edit_timeline_path(timeline) %></td>
-        <td><%= link_to 'Destroy', timeline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Title</th>
+        <th>Description</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @timelines.each do |timeline| %>
+        <tr>
+          <td><%= timeline.title %></td>
+          <td><%= timeline.description %></td>
+          <td><%= link_to 'Show', timeline %></td>
+          <td><%= link_to 'Edit', edit_timeline_path(timeline) %></td>
+          <td><%= link_to 'Destroy', timeline, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Timeline', new_timeline_path %>
+  <br>
+
+  <%= link_to 'New Timeline', new_timeline_path %>
+
+</div>
