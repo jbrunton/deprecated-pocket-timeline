@@ -13,6 +13,12 @@ group :production do
   gem 'pg'
 end
 
+# Serve assets on Heroku.
+# See https://devcenter.heroku.com/articles/ruby-support#static-assets
+group :production do
+  gem 'rails_serve_static_assets'
+end
+
 gem 'foundation-rails', '~> 5.0.2'
 
 # Use SCSS for stylesheets
