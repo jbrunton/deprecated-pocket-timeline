@@ -4,7 +4,8 @@ describe "events/show" do
   before(:each) do
     @event = assign(:event, stub_model(Event,
       :title => "Title",
-      :description => "MyText"
+      :description => "MyText",
+      :date => Date.today
     ))
   end
 

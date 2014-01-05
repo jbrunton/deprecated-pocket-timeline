@@ -40,14 +40,39 @@ textarea {
 
 
 /*
- * Buttons
+ * Actions
  */
-
+ 
 .actions {
   float: right;
-  font-size: 65%;
   font-weight: normal;
+  height: 0;
 }
+
+.event.content-full .actions {
+  font-size: 65%;
+}
+
+.event.panel .actions {
+  font-size: 85%;
+}
+
+.actions a:after {
+  content: '\0020\00B7';
+}
+
+.actions a:last-child:after {
+  content: '';
+}
+
+.actions form {
+  display: inline;
+}
+
+
+/*
+ * Buttons
+ */
 
 .button.action {
   @include button-style($bg:$primary-color);

@@ -1,9 +1,19 @@
 <div class="content-full">
-  <p>Search</p>
+  <% if @events then %>
+    <h1>Search Results</h1>
+  <% else %>
+    <h1>Search</h1>
+  <% end %>
 
   <%= form_tag(search_timeline_events_path(@timeline), method: 'get') do -%>
-    <input type="text" name="query" value="<%= params[:query] %>" />
-    <div><%= submit_tag 'Search' %></div>
+    <div class="row collapse">
+      <div class="large-11 small-10 columns">
+        <input type="text" name="query" value="<%= params[:query] %>" />
+      </div>
+      <div class="large-1 small-2 columns">
+        <%= submit_tag 'Search', :class => 'tiny postfix button' %>
+      </div>
+    </div>
   <% end -%>
 
   <% if @events then %>

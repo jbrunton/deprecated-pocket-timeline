@@ -1,22 +1,17 @@
-<div class="event">
-  <p class="event_date">
-    <strong>Date:</strong>
-    <%= event.date %>
-  </p>
+<div class="event panel">
+  <h6 class="clearfix">
+    <%= event.date.to_formatted_s(:long) %>
+    <div class="actions">
+      <%= link_to 'View', event_path(event) %>
+      <% if enable_add_event then %>
+        <%= form_tag(add_timeline_event_url(@timeline, event), method: 'post') do -%>
+          <%= submit_tag 'Add Event', :class => 'tiny button' %>
+        <% end -%>
+      <% else %>
+        <%= link_to 'Edit', edit_event_path(event) %>
+      <% end %>
+    </div>
+  </h6>
+  <h5 class="event_title"><%= event.title %></h5>
 
-  <p class="event_title">
-    <strong>Title:</strong>
-    <%= event.title %>
-  </p>
-
-  <p class="event_description">
-    <strong>Description:</strong>
-    <%= event.description %>
-  </p>
-  
-  <% if enable_add_event then %>
-    <%= form_tag(add_timeline_event_url(@timeline, event), method: 'post') do -%>
-      <div><%= submit_tag 'Add Event' %></div>
-    <% end -%>
-  <% end %>
 </div>
