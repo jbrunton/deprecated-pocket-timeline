@@ -43,6 +43,12 @@ textarea {
  * Buttons
  */
 
+.actions {
+  float: right;
+  font-size: 65%;
+  font-weight: normal;
+}
+
 .button.action {
   @include button-style($bg:$primary-color);
   
