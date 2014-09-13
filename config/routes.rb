@@ -1,4 +1,6 @@
 PocketTimeline::Application.routes.draw do
+  resources :questions
+
   resources :timelines do
     resources :events do
       member do
