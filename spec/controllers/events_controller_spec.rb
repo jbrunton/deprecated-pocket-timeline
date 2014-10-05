@@ -32,10 +32,20 @@ describe EventsController do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all events as @events" do
+    it "assigns all events as @events if no timeline_id is specified" do
       event = Event.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:events)).to eq([event])
+    end
+    
+    it "assigned all the events for the timeline if a timeline_id is specified" do
+      event = Event.create! valid_attributes
+      timeline = Timeline.create! { { title: 'Some Timeline'} }
+      timeline.events.create( title: 'Another Event' )
+      
+      get :index, { timeline_id: timeline.id }, valid_session
+      
+      expect(assigns(:events)).to eq(timeline.events)
     end
   end
 

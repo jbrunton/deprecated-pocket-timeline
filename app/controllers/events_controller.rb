@@ -1,11 +1,11 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :add, :edit, :update, :destroy]
-  before_action :set_timeline, only: [:search, :add, :new, :create]
+  before_action :set_timeline, only: [:search, :add, :new, :create, :index]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = if @timeline.nil? then Event.all else @timeline.events end
   end
 
   # GET /events/1
