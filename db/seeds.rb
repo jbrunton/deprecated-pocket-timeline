@@ -33,3 +33,18 @@ Timeline.create(
     )
   ]
 )
+
+Timeline.create(
+  title: '20th Century Iran',
+  description: 'Key events in Iran in the 20th Century',
+  events: [
+    Event.create(
+      title: "Iranian coup d'état",
+      date: DateTime.new(1953, 8, 19)
+    ),
+    Event.create(
+      title: "Iran becomes an Islamic republic",
+      date: DateTime.new(1979, 4, 1)
+    )
+  ]
+)
