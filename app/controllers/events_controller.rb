@@ -17,8 +17,8 @@ class EventsController < ApplicationController
   # GET /timelines/1/events/search
   def search
     if params[:query]
-      search_query = "%#{params[:query].downcase}%"
-      @events = Event.where("lower(title) LIKE :query or lower(description) LIKE :query", :query => search_query)
+      query = "%#{params[:query].downcase}%"
+      @events = Event.where("lower(title) LIKE :query or lower(description) LIKE :query", :query => query)
     end
 
     respond_to do |format|
