@@ -19,6 +19,11 @@ class EventsController < ApplicationController
       query = "%#{params[:query].downcase}%"
       @events = Event.where("lower(title) LIKE :query or lower(description) LIKE :query", :query => query)
     end
+
+    respond_to do |format|
+      format.html
+      format.json { render 'events/index' }
+    end
   end
   
   # POST /timelines/1/events/1/add
