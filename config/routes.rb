@@ -12,6 +12,12 @@ PocketTimeline::Application.routes.draw do
     end
   end
 
+  resources :events, only: [] do
+    collection do
+      get 'search'
+    end
+  end
+
   resources :events
 
   root 'home#index'

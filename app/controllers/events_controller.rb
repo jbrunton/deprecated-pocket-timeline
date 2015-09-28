@@ -12,12 +12,18 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
   end
-  
+
+  # GET /events/search
   # GET /timelines/1/events/search
   def search
     if params[:query]
       query = "%#{params[:query].downcase}%"
       @events = Event.where("lower(title) LIKE :query or lower(description) LIKE :query", :query => query)
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render 'events/index' }
     end
   end
   

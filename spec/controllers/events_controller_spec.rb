@@ -58,13 +58,12 @@ describe EventsController do
   end
   
   describe "GET search" do
-    let(:timeline) { create(:timeline) }
     let(:some_event) { create(:event, title: 'Some Event') }
     let(:some_other_event) { create(:event, title: 'Some Other Event') }
     let(:yet_another_event) { create(:event, title: 'Yet Another Event') }
     
     it "searches for all events matching the query" do
-      get :search, {:timeline_id => timeline.id, :query => 'other event'}, valid_session
+      get :search, {:query => 'other event'}, valid_session
       expect(assigns(:events)).to eq([some_other_event, yet_another_event])
     end
   end
