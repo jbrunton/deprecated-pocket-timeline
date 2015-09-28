@@ -48,7 +48,8 @@ group :doc do
 end
 
 group :development, :test do
-  gem 'rspec-rails',  '~> 3.0.0.beta'
+  gem 'rspec-rails',  '~> 3.3.3'
+  gem 'rspec-activemodel-mocks'
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'factory_girl_rails'
