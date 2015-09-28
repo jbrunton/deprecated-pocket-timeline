@@ -1,7 +1,7 @@
 <div class="content-full">
   <h1>Search</h1>
 
-  <%= form_tag(search_events_path(@timeline), method: 'get') do -%>
+  <%= form_tag('search', method: 'get') do -%>
     <div class="row collapse">
       <div class="large-11 small-10 columns">
         <input type="text" name="query" value="<%= params[:query] %>" autofocus />
@@ -15,7 +15,7 @@
   <% if @events then %>
     <% if @events.any? %>
       <% @events.each do |event| %>
-        <%= render 'events/event', event: event, enable_add_event: false %>
+        <%= render 'events/event', event: event, enable_add_event: !@timeline.nil? %>
       <% end %>
     <% else %>
       <p>No results found.</p>
