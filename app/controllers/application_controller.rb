@@ -9,4 +9,8 @@ protected
   def json_request?
     request.format.json?
   end
+
+  def set_cacheable
+    expires_in(5.minutes, public: true)
+  end
 end

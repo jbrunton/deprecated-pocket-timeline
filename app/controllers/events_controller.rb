@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :add, :edit, :update, :destroy]
   before_action :set_timeline, only: [:search, :add, :new, :create, :index]
+  before_action :set_cacheable, only: [:index, :show]
 
   # GET /events
   # GET /events.json
